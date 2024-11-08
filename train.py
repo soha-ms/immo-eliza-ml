@@ -13,7 +13,7 @@ from sklearn.model_selection import GridSearchCV
 import xgboost as xgb
 import joblib
 
-from preprocessing import DataPreprocessor
+from preprocessing import PreprocessorData
  
 def show_heatmap(numeric_df):
     corr_matrix = numeric_df.corr(method='spearman')
@@ -71,7 +71,7 @@ def train_model(X_train, X_test, y_train, y_test, **best_params):
     print(f"Root Mean Squared Error (RMSE): {rmse:.2f}")
 
     # Save the model
-    joblib.dump(xgb_regressor, 'xgb_model.joblib')
+    joblib.dump(xgb_regressor, 'Model/xgb_model.joblib')
 
 #Optimize the model's performance
 def tuning_param(X_train, y_train):
@@ -98,7 +98,7 @@ def tuning_param(X_train, y_train):
 
 def main():    
     filename = "datasets/immo-eliza/properties.csv"      
-    processor = DataPreprocessor(filename)
+    processor = PreprocessorData(filename)
     numeric_df = processor.preprocess_data()
     
     X_train, X_test, y_train, y_test = train_test_data(numeric_df)       

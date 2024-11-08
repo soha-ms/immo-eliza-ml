@@ -5,15 +5,15 @@ from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.preprocessing import OrdinalEncoder
 
-class DataPreprocessor:
+class PreprocessorData:
 
-    def __init__(self, data_path):
-        self.data_path = data_path
+    def __init__(self, file_path):
+        self.file_path = file_path
         self.dataset = self.load_data()
 
     # Load data from csv file
     def load_data(self):
-        return pd.read_csv(self.data_path)
+        return pd.read_csv(self.file_path)
 
     def clean_data(self) :
         # Check how many rows of each attribute are NaN
